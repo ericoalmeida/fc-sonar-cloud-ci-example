@@ -1,0 +1,25 @@
+name: 'ci workflow'
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+jobs:
+  check-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout project
+        uses: actions/checkout@v2
+      
+      - name: setup node environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.17.6'
+      
+  #    - name: run tests
+  #      run: go test
+      
+      - name: run app
+        run: node src/index.js
